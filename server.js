@@ -28,7 +28,7 @@ var articles = {
     
     
     
-} ,
+},
 'article-two':{
      title: 'article two | krishnaveni ' , 
     heading : 'article two ' , 
