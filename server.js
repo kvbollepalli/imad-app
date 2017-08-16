@@ -58,7 +58,7 @@ var title = data.title;
 var date = data.date;
 var heading = data.heading ;
 var content = data.content;
-var htmltemplate=`
+var htmlTemplate=`
 
 <html>
 <head>
@@ -96,7 +96,7 @@ var htmltemplate=`
 </html>
 
 `;
-return htmltemplate;
+return htmlTemplate;
 }
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
