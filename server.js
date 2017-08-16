@@ -40,7 +40,7 @@ var articles = {
     
     
 },
-'articles-three' : {
+'article-three' : {
      title: 'article three | krishnaveni ' , 
     heading : 'article three ' , 
     date : '23 aug ,  2017' , 
