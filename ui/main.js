@@ -28,3 +28,22 @@ button.onclick = function () {
     request.open("GET" , "http://kvbollepalli198112.imad.hasura-app.io/counter" , true );
     request.send(null);
 };
+
+//submit name 
+var nameInput= document.elementById('name');
+var value = nameInput.value; 
+var submit = document.elementById('submit');
+submit.onClick = function(){
+    // make a request to the server and send the name 
+    // captur the list of names and render it as  a list
+    
+    var names = ['name1' , 'name2' , 'name3' ] ;
+    
+    for(var i = 0 ; i<names.length ; i++)
+    {
+        list+= "<li> '+ names[i] +' </li>";
+        var ul = document.getElementById('nameList');
+        ul.innerHTML= list;
+        
+    }
+};
