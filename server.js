@@ -117,7 +117,6 @@ app.get('/:articleName' , function(req, res){
 });
 
 
-
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
@@ -128,6 +127,19 @@ app.get('/ui/main.js', function (req, res) {
 });
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+});
+
+var names=[];
+app.get('/submit-name/:name' , function(req,res){
+    // get the name from the request 
+    var name = req.params.name ;
+    names.push(name);
+    // json javascript object notation
+    
+    res.send(json.stringify(names));
+    
+    
+    
 });
 
 
