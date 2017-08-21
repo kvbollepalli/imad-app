@@ -52,16 +52,7 @@ var articles = {
 }
 };
 
-var names=[];
-app.get('/submit-name/:name' , function(req,res){
-    // get the name from the request 
-    var name = req.params.name ;
-    names.push(name);
-    // json javascript object notation
-    
-    res.send(json.stringify(names));
-    
-});
+
 
 function createTemplate(data)
 {
@@ -110,7 +101,16 @@ var htmlTemplate=`
 return htmlTemplate;
 }
 
-
+var names=[];
+app.get('/submit-name/:name' , function(req,res){
+    // get the name from the request 
+    var name = req.params.name ;
+    names.push(name);
+    // json javascript object notation
+    
+    res.send(json.stringify(names));
+    
+});
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
