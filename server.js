@@ -5,16 +5,7 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var names=[];
-app.get('/submit-name/:name' , function(req,res){
-    // get the name from the request 
-    var name = req.params.name ;
-    names.push(name);
-    // json javascript object notation
-    
-    res.send(json.stringify(names));
-    
-    
+
 var articles = {
     
 
@@ -109,6 +100,16 @@ var htmlTemplate=`
 return htmlTemplate;
 }
 
+var names=[];
+app.get('/submit-name/:name' , function(req,res){
+    // get the name from the request 
+    var name = req.params.name ;
+    names.push(name);
+    // json javascript object notation
+    
+    res.send(json.stringify(names));
+    
+});
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
@@ -141,7 +142,6 @@ app.get('/ui/madi.png', function (req, res) {
 
     
     
-});
 
 
 // Do not change port, otherwise your app won't run on IMAD servers
