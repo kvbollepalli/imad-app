@@ -4,7 +4,14 @@ var path = require('path');
 
 var app = express();
 app.use(morgan('combined'));
-
+var pool = require('pg').pool;
+var config={
+    user:'' , 
+    database:'' ,
+    host:'db.imad.hasura.app.io' , 
+    port:'5432' , 
+    password:process.env.DB_PASSW0RD
+}
 
 var articles = {
     
