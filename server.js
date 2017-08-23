@@ -156,11 +156,30 @@ var names=[];
 });
 
 
-app.get('/:articleName' , function(req, res){
+app.get('/articles/:articleName' , function(req, res){
     var articleName=req.params.articleName;
+    pool.query("SELECT * FROM article where title = " + req.params.articleName , function(err,result)
+    {
+        
+    });
    res.send(createTemplate(articles[articleName]));
    
-    
+     if(err)
+        {
+            res.status(500).send(err.toString());
+        }
+        else 
+        {
+            if(result.rows.length===0)
+            {
+                res.ststus(404).send('Article not found');
+            }
+            else{
+                var articleData = result.rows(0);
+                
+            res.send(createTemplate(articleData));
+            }
+        }
 });
 
 
