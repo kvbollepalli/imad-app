@@ -158,7 +158,7 @@ var names=[];
 
 app.get('/articles/:articleName' , function(req, res){
     var articleName=req.params.articleName;
-    pool.query("SELECT * FROM article where title = " + req.params.articleName , function(err,result)
+    pool.query("SELECT * FROM article where title = '" + req.params.articleName + "'" , function(err,result)
     {
         
     });
