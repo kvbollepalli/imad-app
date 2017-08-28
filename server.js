@@ -1,11 +1,11 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-
-var app = express();
-app.use(morgan('combined'));
-
 var pool = require('pg').pool;
+var crypto = require('crypto');
+
+
+
 
 var config={
     user:'kvbollepalli198112' , 
@@ -15,52 +15,8 @@ var config={
     password:process.env.DB_PASSW0RD
 };
 
-var articles = {
-    
-
-'article-one' : {
-    
-    title: 'article one | krishnaveni ' , 
-    heading : 'article one ' , 
-    date : '13 aug ,  2017' , 
-    content : ` <p>
-                This is the  content for my  first article .This is the  content for my  first article. 
-                This is the  content for my  first article .
-              </p>
-            <p>
-                This is the  content for my  first article .This is the  content for my  first article. 
-                This is the  content for my  first article .
-            </p>
-            <p>
-                This is the  content for my  first article .This is the  content for my  first article. 
-                This is the  content for my  first article .
-            </p> `
-    
-    
-    
-},
-'article-two':{
-     title: 'article two | krishnaveni ' , 
-    heading : 'article two ' , 
-    date : '16 aug ,  2017' , 
-    content : ` <p>
-                This is the  content for my  second  article .
-            </p> `
-    
-    
-    
-},
-'article-three' : {
-     title: 'article three | krishnaveni ' , 
-    heading : 'article three ' , 
-    date : '23 aug ,  2017' , 
-    content : ` <p>
-                This is the  content for my  third  article .
-            </p> `
-    
-}
-};
-
+var app = express();
+app.use(morgan('combined'));
 
 
 function createTemplate(data)
@@ -117,6 +73,19 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
+//var hash = new hash();
+function has(input)
+{
+    // how do we create input
+    var hashed= crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
+    return hashed;
+}
+app.get('/hash/:input',function(req,res)
+{
+    var hashString=hash(req.params.input);
+    
+    res.send(hashedString);
+});
 var pool = new pool(config);
 app.get('/test-db', function(req,res)
 {
@@ -154,6 +123,53 @@ var names=[];
     res.send(JSON.stringify(names));
     
 });
+
+
+var articles = {
+    
+
+'article-one' : {
+    
+    title: 'article one | krishnaveni ' , 
+    heading : 'article one ' , 
+    date : '13 aug ,  2017' , 
+    content : ` <p>
+                This is the  content for my  first article .This is the  content for my  first article. 
+                This is the  content for my  first article .
+              </p>
+            <p>
+                This is the  content for my  first article .This is the  content for my  first article. 
+                This is the  content for my  first article .
+            </p>
+            <p>
+                This is the  content for my  first article .This is the  content for my  first article. 
+                This is the  content for my  first article .
+            </p> `
+    
+    
+    
+},
+'article-two':{
+     title: 'article two | krishnaveni ' , 
+    heading : 'article two ' , 
+    date : '16 aug ,  2017' , 
+    content : ` <p>
+                This is the  content for my  second  article .
+            </p> `
+    
+    
+    
+},
+'article-three' : {
+     title: 'article three | krishnaveni ' , 
+    heading : 'article three ' , 
+    date : '23 aug ,  2017' , 
+    content : ` <p>
+                This is the  content for my  third  article .
+            </p> `
+    
+}
+};
 
 
 app.get('/articles/:articleName' , function(req, res){
