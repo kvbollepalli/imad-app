@@ -74,7 +74,7 @@ app.get('/', function (req, res) {
 });
 
 //var hash = new hash();
-function has(input,salt)
+function hash(input,salt)
 {
     // how do we create input
     var hashed= crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
