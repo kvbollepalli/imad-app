@@ -1,7 +1,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-var pool = require('pg').pool;
+var Pool = require('pg').Pool;
 var crypto = require('crypto');
 
 
@@ -87,7 +87,7 @@ app.get('/hash/:input',function(req,res)
     res.send(hashedString);
 });
 
-var  pool = new pool(config);
+var  pool = new Pool(config);
 app.get('/test-db', function(req,res)
 {
     // make s select req
